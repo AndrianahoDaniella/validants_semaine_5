@@ -1,0 +1,2 @@
+class AddColomnComment < ApplicationRecord
+end

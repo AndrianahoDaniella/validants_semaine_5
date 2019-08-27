@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gossip Edit</title>
+
+
+</head>
+<body>
+
+
+<h1 class='titre'> Edit Gossips</h1>
+
+<h3>Formulaire de Gossip</h3>
+
+<div class="container">
+
+  <%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+        <%= label_tag 'Title' %>
+        <%= text_field_tag 'title', @gossip.title, placeholder: "#{@gossip.title}" %>
+        <br /> <br />
+
+        <%= label_tag 'Content' %>
+        <%= text_area_tag 'content', @gossip.content, placeholder: "#{@gossip.content}" %>
+        <br /> <br />
+
+        <%= submit_tag "update patch" %>
+
+      <% end %>
+  <% if @gossip.errors.any? %>
+    <p>Nous n'avons pas réussi à modif le potin pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @gossip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Gossips</title>
+	</head>
+
+  <body class="text-align: center">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="well">
+          <div class="card" style="width: 18rem; height: 10rem;">
+          	<%= image_tag("chuck_norris.jpg", :alt => "chuck norris") %>
+            		<div class="card-body">
+              		<h5 class="card-title">Title: <%= @gossip.title %></h5>
+              		<p class="card-text">Gossip Content: <%= @gossip.content %></p>
+                  <p class="card-text">City user: <%= @gossip.user.city.name %></p>
+             			<%= link_to "#{@gossip.user.first_name}", user_path(@gossip.user.id) %>
+            		</div>
+                <p><a class="btn btn-primary btn-lg" href = '/gossips/<%=@gossip.id%>' data-method="delete" data-confirm="t'es sure?" role = "button">Supr »</a></p>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-sm-9">
+        <div class="well">
+          
+          <div class="container">
+            <%= form_tag( "/gossips/#{@gossip.id}/comments", method: "post")  do %>
+              <%= label_tag 'Commentaire' %>
+              <%= text_area_tag 'content',nil, placeholder: "Ton Commentaire..." %>
+              <%= submit_tag "Comment" %>
+            
+            <% end %>
+          </div>
+
+          <div class="container">
+            <% @gossip.comments.reverse.each do |lo| %>
+              <p class="card-text"><%= lo.content %></p>
+            <p><a class="btn btn-primary btn-lg" href = '/gossips/<%=@gossip.id%>/comments/<%=lo.id%>' data-method="delete" data-confirm="t'es sure?" role = "button">Supr »</a></p>
+            <% end %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </body>
+
+</html>

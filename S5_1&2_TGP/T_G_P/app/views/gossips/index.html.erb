@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Gossips</title>
+	</head>
+
+  <body class="text-align: center">
+
+
+<div class="card" style="width: 18rem; height: 10rem;">
+	<%= image_tag("chuck_norris.jpg", :alt => "chuck norris") %>
+  		<div class="card-body">
+    		<h5 class="card-title">Title: <%= @gossip.title %></h5>
+    		<p class="card-text">Gossip Content: <%= @gossip.content %></p>
+   			<%= link_to "#{@gossip.user.first_name}", users_user_id_path(@gossip.user.id) %>
+  		</div>
+</div>
+
+</body>
+
+</html>

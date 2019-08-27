@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gossip New</title>
+
+
+</head>
+<body>
+
+
+<h1 class='titre'> Creat Gossips</h1>
+
+<h3>Formulaire de Gossip</h3>
+
+<div class="container">
+
+  <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+        <%= label_tag 'Title' %>
+        <%= text_field_tag 'title', @gossip.title, placeholder: "Titre ici..." %>
+       
+
+        <%= label_tag 'Content' %>
+        <%= text_area_tag 'content', @gossip.content, placeholder: "Ton potin..." %>
+        <br /> <br />
+
+        <%= submit_tag "Create Gossip" %>
+
+  <% end %>
+  <% if @gossip.errors.any? %>
+    <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+    <ul>
+      <% @gossip.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+</body>
+
+</html>
